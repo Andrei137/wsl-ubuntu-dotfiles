@@ -13,12 +13,15 @@ u.map("nvit", "<Right>", "<Nop>", u.opts "Right is disabled")
 u.map("nvit", "<F1>", "<Nop>", u.opts "F1 is disabled")
 u.map("nvit", "<A-x>", "<Nop>", u.opts "Alt-x is disabled")
 u.map("nvit", "<A-s>", "<Nop>", u.opts "Alt-s is disabled")
-u.map("n", "q:", "<Nop>", u.opts "Disable q:")
-u.map("n", "q/", "<Nop>", u.opts "Disable q/")
-u.map("n", "q?", "<Nop>", u.opts "Disable q?")
+u.map("nvt", "q:", "<Nop>", u.opts "Disable q:")
+u.map("nvt", "q/", "<Nop>", u.opts "Disable q/")
+u.map("nvt", "q?", "<Nop>", u.opts "Disable q?")
 
--- Ctrl + Backspace
-u.map("i", "<C-h>", "<C-w>", u.opts "Delete word")
+-- Move in insert mode
+u.map("i", "<C-h>", "<Left>", u.opts "Move left")
+u.map("i", "<C-l>", "<Right>", u.opts "Move right")
+u.map("i", "<C-j>", "<Down>", u.opts "Move down")
+u.map("i", "<C-k>", "<Up>", u.opts "Move up")
 
 -- Move selection
 u.map("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
@@ -27,10 +30,10 @@ u.map("v", ">", ">gv", u.opts "Shift right")
 u.map("v", "<", "<gv", u.opts "Shift left")
 
 -- Delete without copy
-u.map("n", "x", '"_x', u.opts "Delete without copy")
-u.map("n", "X", '"_X', u.opts "Delete without copy")
+u.map("nv", "x", '"_x', u.opts "Delete without copy")
+u.map("nv", "X", '"_X', u.opts "Delete without copy")
 u.map("nv", "d", '"_d', u.opts "Delete without copy")
-u.map("n", "D", '"_D', u.opts "Delete without copy")
+u.map("nv", "D", '"_D', u.opts "Delete without copy")
 
 -- Change without copy
 u.map("nv", "c", '"_c', u.opts "Change without copy")
@@ -38,8 +41,7 @@ u.map("n", "C", '"_C', u.opts "Change without copy")
 
 -- Cut
 u.map("nv", "m", "d", u.opts "Cut")
-u.map("nv", "mm", "d", u.opts "Cut")
-u.map("n", "M", "D", u.opts "Cut")
+u.map("nv", "M", "D", u.opts "Cut")
 
 -- Paste
 u.map("v", "p", '"_dP', u.opts "Keep last yanked on paste")
@@ -50,9 +52,11 @@ end, u.opts "Paste and remove \r")
 
 -- Save
 u.map("n", "<C-s>", function()
-	vim.cmd "Format"
+	if vim.fn.exists ":Format" == 2 then
+		vim.cmd "Format"
+	end
 	vim.cmd "write"
-end, { desc = "Save file)" })
+end, { desc = "Save file" })
 
 -- Format
 u.map("n", "<C-f>", ":Format <CR>", u.opts "Format")
@@ -95,4 +99,3 @@ u.map("n", "<C-l>", ":wincmd l<CR>", u.opts "Focus right split")
 
 -- Line wrapping
 u.map("n", "<leader>lw", "<cmd>set wrap!<CR>", u.opts "Toggle wrapping")
-

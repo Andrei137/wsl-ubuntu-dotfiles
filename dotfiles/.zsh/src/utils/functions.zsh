@@ -16,15 +16,11 @@ sf() {
   subl "${files[@]}"
 }
 
-mcd() {
-    mkdir -p "$@" && cd "$@"
-}
-
-paste() {
+xpaste() {
   xclip -selection clipboard -o > "$@"
 }
 
-cut() {
+xcut() {
   cat "$@" | xclip -selection clipboard
 }
 

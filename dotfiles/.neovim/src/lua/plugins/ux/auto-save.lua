@@ -13,5 +13,16 @@ return {
 				vim.cmd "noautocmd write"
 			end)
 		end,
+		condition = function(buf)
+			local fn = vim.fn
+			local utils = require "auto-save.utils.data"
+			local ft = fn.getbufvar(buf, "&filetype")
+			local excluded = { "dbui", "sql" }
+
+			if fn.getbufvar(buf, "&modifiable") == 1 and utils.not_in(ft, excluded) then
+				return true
+			end
+			return false
+		end,
 	},
 }

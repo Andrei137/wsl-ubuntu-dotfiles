@@ -7,9 +7,10 @@
 	ui = auto
 [core]
 	editor = nvim
-	autocrlf = input
+	autocrlf = false
 	eol = lf
-	pager = less
+	pager = less -FX
+	safecrlf = true
 [pull]
 	rebase = true
 [credential]

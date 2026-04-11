@@ -2,12 +2,12 @@ vim.g.have_nerd_font = true
 vim.o.termguicolors = true
 vim.o.clipboard = "unnamedplus"
 vim.o.mouse = "a"
+vim.opt.guicursor = "a:block"
 
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
 vim.o.showtabline = 0
-vim.o.cursorlineopt = "number"
 vim.o.showmode = false
 vim.wo.signcolumn = "yes"
 
@@ -43,9 +43,6 @@ vim.o.incsearch = true
 vim.o.pumheight = 10
 vim.o.conceallevel = 0
 
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
-
 vim.opt.fillchars = { fold = " " }
 vim.opt.foldmethod = "indent"
 vim.opt.foldenable = false
@@ -54,5 +51,7 @@ vim.opt.foldlevel = 99
 vim.o.completeopt = "menuone"
 vim.opt.shortmess:append "c"
 vim.opt.iskeyword:append "-"
-vim.opt.formatoptions:remove { "c", "r", "o" }
 vim.opt.runtimepath:remove "/usr/share/vim/vimfiles"
+
+vim.opt.list = true
+vim.opt.listchars = { tab = "▏ ", trail = "·", nbsp = "␣" }

@@ -3,7 +3,8 @@ return {
 	build = ":TSUpdate",
 	main = "nvim-treesitter.configs",
 	opts = {
-		auto_install = false,
+		auto_install = true,
+		ensure_installed = { "sql", "lua", "python", "cpp", "javascript", "html", "markdown" },
 		highlight = {
 			enable = true,
 			additional_vim_regex_highlighting = { "ruby" },

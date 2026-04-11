@@ -2,12 +2,16 @@ local u = require "utils"
 
 return {
 	"stevearc/conform.nvim",
+	dependencies = {
+		{ "mason-org/mason.nvim", opts = {} },
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+	},
 	config = function()
 		local conform = require "conform"
 		conform.setup {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				sh = { "shellcheck" },
+				sh = { "shellcheck", "shfmt" },
 				dockerfile = { "dockerfmt" },
 				cpp = { "clang-format" },
 				html = { "prettierd" },
@@ -23,7 +27,7 @@ return {
 			},
 			formatters = {
 				["clang-format"] = {
-					args = { "--style={BasedOnStyle:: 4, TabWidth: 4, UseTab: Never}" },
+					args = { "--style={BasedOnStyle: LLVM, BreakBeforeBraces: Allman, AllowShortFunctionsOnASingleLine: false, IndentWidth: 4, TabWidth: 4, UseTab: Never}" },
 				},
 			},
 		}

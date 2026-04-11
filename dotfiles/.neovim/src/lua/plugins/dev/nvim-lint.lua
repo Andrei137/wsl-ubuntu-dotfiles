@@ -3,6 +3,11 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local lint = require "lint"
+
+		if not lint.parser then
+			lint.parser = require "lint.parser"
+		end
+
 		lint.linters_by_ft = {
 			sh = { "shellcheck" },
 			dockerfile = { "hadolint" },
@@ -11,18 +16,24 @@ return {
 			css = { "stylelint" },
 			javascript = { "eslint_d" },
 			typescript = { "eslint_d" },
-			python = { "ruff" },
-			-- markdown = { "markdownlint-cli2" },
+			markdown = { "markdownlint" },
 			json = { "jsonlint" },
 			yaml = { "yamllint" },
 			["*"] = { "codespell" },
 		}
 
-		lint.linters["markdownlint-cli2"].args = {
+		lint.linters["markdownlint"].args = {
 			"--fix",
 			"--disable",
 			"MD013",
 			"--",
+		}
+
+		lint.linters["stylelint"].args = {
+			"--config",
+			vim.fn.expand "~/.config/stylelint/default.json",
+			"--formatter",
+			"json",
 		}
 
 		local function safe_try_lint()
