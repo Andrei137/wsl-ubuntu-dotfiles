@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+ensure_installed() {
+    if ! command -v "$1" >/dev/null 2>&1; then
+        echo "Missing $1, installing via devbox..."
+        devbox global add "$1"
+    fi
+}
+
+ensure_installed jq
+ensure_installed git
+
 ACTION=${1:-export}
 REPO=$(jq -r '.repository' settings.json)
 

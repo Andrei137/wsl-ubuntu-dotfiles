@@ -4,9 +4,9 @@ I prefer using `devbox`, but any other method should work as well
 sudo apt install zsh
 chsh -s $(which zsh)
 devbox global add fzf zsh-defer oh-my-zsh
-ln -s ~/.local/share/devbox/global/default/.devbox/nix/profile/default/share/fzf ~/.config/zsh/fzf
+sudo ln -s ~/.local/share/devbox/global/default/.devbox/nix/profile/default/share/fzf ~/.config/zsh/fzf
 mkdir -p ~/.config/zsh
-for dir in zsh-defer oh-my-zsh; do ln -s ~/.local/share/devbox/global/default/.devbox/nix/profile/default/share/$dir ~/.config/zsh/; done
+sudo for dir in zsh-defer oh-my-zsh; do ln -s ~/.local/share/devbox/global/default/.devbox/nix/profile/default/share/$dir ~/.config/zsh/; done
 export OMZ_PLUGINS=~/.config/zsh/oh-my-zsh/plugins
 sudo git clone https://github.com/zsh-users/zsh-autosuggestions $OMZ_PLUGINS/zsh-autosuggestions
 sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OMZ_PLUGINS/zsh-syntax-highlighting
